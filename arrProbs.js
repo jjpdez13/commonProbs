@@ -1,7 +1,6 @@
-/************************************************ PROBLEM 1 ***********************************************/
+/************************************************ TWO SUM ***********************************************/
 
 // Two Sum: Find two numbers in an array that add up to a target number.
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
 
 /*
 const arr = [1, 2, 3, 4, 5];
@@ -91,10 +90,9 @@ Why it matters:
 - The memory our machine uses grows at the same pace.
 */
 
-/************************************************ PROBLEM 2 ***********************************************/
+/************************************************ TWO SUM (INEFFICIENT) ***********************************************/
 
 // Two Sum again but using double loops (a simpler but slower way).
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
 
 /*
 const twoSumtwo = (arr, target) => { ... }
@@ -167,10 +165,9 @@ Why it matters:
 - Only the time (speed) is a problem, not the space.
 */
 
-/************************************************ PROBLEM 3 ***********************************************/
+/************************************************ REVERSE ARRAY ***********************************************/
 
 // Reverse Array: Write a function to reverse an array in-place (no new array created).
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
 
 /*
 const revArr = (arr) => { ... }
@@ -247,10 +244,9 @@ Why it matters:
 - Great for saving space and avoiding crashes on big arrays.
 */
 
-/************************************************ PROBLEM 4 ***********************************************/
+/************************************************ REVERSE ARRAY (SIMPLE) ***********************************************/
 
 // Reverse Array again but using math with array indexes.
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
 
 /*
 const revArrTwo = (arr) => { ... }
@@ -318,10 +314,9 @@ Why it matters:
 - No wasted space — very clean solution.
 */
 
-/************************************************ PROBLEM 5 ***********************************************/
+/************************************************ MAX SUBARRAY ***********************************************/
 
 // Maximum Subarray: Find the contiguous subarray within an array that has the largest sum.
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
 
 /*
 const maxSubArr = (arr) => { ... }
@@ -393,10 +388,9 @@ Why it matters:
 - No matter how big the input array is, memory use stays the same.
 */
 
-/************************************************ PROBLEM 6 ***********************************************/
+/************************************************ MAX SUBARRAY (SIMPLE) ***********************************************/
 
 // Maximum Subarray again but trying every possible subarray (a simpler but much slower way).
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
 
 /*
 const maxSubArrTwo = (arr) => { ... }
@@ -470,150 +464,4 @@ We do not create a new array.
 Why it matters:
 - Even though it’s slow in time, it’s still very small in memory use.
 - Memory is not the problem, only speed.
-*/
-
-/************************************************ PROBLEM 7 ***********************************************/
-
-// Reverse Linked List: Reverse a singly linked list.
-// Written and explained for my son — and for any kid (or person) learning coding for the first time.
-
-/*
-class ListNode { ... }
-This creates a blueprint for something called a "node".
-A node is one piece of a linked list — it holds:
-- a value (val)
-- a pointer (next) that tells it where the next node is.
-*/
-
-class ListNode {
-    constructor(val) {
-        this.val = val;
-        // 'val' is the value or number that the node holds.
-
-        this.next = null;
-        // 'next' is where the next node lives.
-        // Right now it is set to null (meaning it doesn't point anywhere yet).
-    }
-}
-
-/*
-const reverseLinkedList = (head) => { ... }
-This creates a machine (function) called "reverseLinkedList".
-You give it:
-- the first node in the linked list (called 'head')
-The machine will reverse the linked list so that the last node becomes the first.
-*/
-
-const reverseLinkedList = (head) => {
-    let prev = null;
-    // 'prev' will follow behind and remember the previous node. Start with nothing (null).
-
-    let current = head;
-    // 'current' starts at the very beginning (head) of the list.
-
-    while (current !== null) {
-        // Keep going until there are no more nodes (current becomes null).
-
-        const nextNode = current.next;
-        // Save the next node before we break the link.
-
-        current.next = prev;
-        // Make the current node point backward instead of forward.
-
-        prev = current;
-        // Move 'prev' forward to where 'current' is now.
-
-        current = nextNode;
-        // Move 'current' forward to the saved nextNode.
-    }
-
-    return prev;
-    // When done, 'prev' will be the new head (the start of the reversed list).
-};
-
-/*
-Helper function: createLinkedList(arr)
-Turns an array into a linked list so we can test easily.
-Each item in the array becomes a node.
-*/
-
-const createLinkedList = (arr) => {
-    let head = new ListNode(arr[0]);
-    // Make the first node with the first item in the array.
-
-    let current = head;
-    // Start from the head and build forward.
-
-    for (let i = 1; i < arr.length; i++) {
-        current.next = new ListNode(arr[i]);
-        // Create a new node and link it to the current one.
-
-        current = current.next;
-        // Move 'current' forward to the new node.
-    }
-
-    return head;
-    // Return the head (the start of the new linked list).
-};
-
-/*
-Helper function: printLinkedList(head)
-Turns a linked list back into a simple array to see it easier when we print it.
-*/
-
-const printLinkedList = (head) => {
-    const result = [];
-    // Start with an empty array.
-
-    while (head) {
-        result.push(head.val);
-        // Add the value of each node to the array.
-
-        head = head.next;
-        // Move to the next node.
-    }
-
-    return result;
-    // Return the full array of values.
-};
-
-// Testing it out!
-
-const list1 = createLinkedList([1, 2, 3, 4, 5]);
-const reversedList1 = reverseLinkedList(list1);
-console.log(printLinkedList(reversedList1));
-// Output: [5, 4, 3, 2, 1]
-
-const list2 = createLinkedList([7, 14, 21]);
-const reversedList2 = reverseLinkedList(list2);
-console.log(printLinkedList(reversedList2));
-// Output: [21, 14, 7]
-
-/*
-HOW TO TEST THIS YOURSELF:
-- Open a terminal (I prefer "Warp" terminal).
-- Go into the folder where this file is saved.
-- Type: node arrProbs.js
-- Press ENTER.
-- You will see the reversed linked lists printed as arrays!
-
-('node' lets you run JavaScript files outside of a website.)
-*/
-
-/* Time Complexity:
-O(n) - "n" means the number of nodes in the linked list.
-We touch each node exactly once while reversing the links.
-
-Why it matters:
-- Even if the list has 1 million nodes, it only takes 1 million simple steps.
-- Very efficient!
-*/
-
-/* Space Complexity:
-O(1) - We only use a few extra pointers (prev, current, nextNode).
-We do not create a new linked list — just rearrange the one we already have.
-
-Why it matters:
-- Memory stays very small.
-- No matter how big the list is, memory use stays the same.
 */
